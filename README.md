@@ -4,4 +4,6 @@
 ## Aby uruchomić aplikację należy wpisać w konsoli
 > npm run dev
 
-## Laboratoriwa 5
+## Laboratoria 5
+
+# Karol Nowak
