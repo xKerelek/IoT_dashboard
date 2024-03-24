@@ -1,9 +1,11 @@
-# Technologie Webowe W Aplikacjach Internetu Rzeczy
-## Aplikacja IoT - dashboard
+(MARKDOWN)
 
-## Aby uruchomić aplikację należy wpisać w konsoli
-> npm run dev
+# Technologie Webowe W Aplikacjach Internetu Rzeczy :computer:
+## Aplikacja IoT - dashboard :bar_chart:
 
-### Laboratoria 5
+### Aby uruchomić aplikację należy wpisać w konsoli
+> npm run dev :rocket:
 
-# Karol Nowak
+### Laboratoria 5 :microscope:
+
+# Karol Nowak :man_technologist:
