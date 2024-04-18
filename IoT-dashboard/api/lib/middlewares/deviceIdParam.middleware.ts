@@ -5,7 +5,7 @@ export const checkIdParam: RequestHandler = (request: Request, response: Respons
     const { id } = request.params;
     const parsedValue = parseInt(id, 10);
     if (isNaN(parsedValue) || parsedValue >= config.supportedDevicesNum) {
-        return response.status(400).send('Brak lub niepoprawny parametr ID urządzenia!');
+        return response.status(400).send('Device ID parameter missing or incorrect!');
     }
     next();
 };
