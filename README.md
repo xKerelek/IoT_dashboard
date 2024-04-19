@@ -1,5 +1,3 @@
-(MARKDOWN)
-
 # Technologie Webowe W Aplikacjach Internetu Rzeczy :computer:
 ## Aplikacja IoT - dashboard :bar_chart:
 
