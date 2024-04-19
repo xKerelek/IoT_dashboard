@@ -1,5 +1,3 @@
-(MARKDOWN)
-
 # Technologie Webowe W Aplikacjach Internetu Rzeczy :computer:
 ## Aplikacja IoT - dashboard :bar_chart:
 
@@ -10,4 +8,4 @@
 
 # Karol Nowak :man_technologist:
 
-> Laboratoria 5
+> Laboratoria 8
