@@ -72,6 +72,18 @@ class UserController implements Controller {
         }
     };
 
+    private resetUserPassword = async (request: Request, response: Response, next: NextFunction) => {
+        const {userId} = request.params;
+
+        try {
+            const result = await this.tokenService.remove(userId);
+            response.status(200).send(result);
+        } catch (error) {
+            console.error(`Validation Error: ${error.message}`);
+            response.status(401).json({error: 'Unauthorized'});
+        }
+    };
+
 }
 
 export default UserController;
