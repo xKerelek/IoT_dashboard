@@ -1,5 +1,11 @@
 import Controller from "interfaces/controller.interface";
 import { Request, Response, NextFunction, Router } from 'express'
+<<<<<<< Updated upstream
+=======
+import {checkIdParam} from "../middlewares/deviceIdParam.middleware";
+import DataService from "../modules/services/data.service";
+import Joi from "joi";
+>>>>>>> Stashed changes
 
 let testArr = [4, 5, 6, 3, 5, 3, 7, 5, 13, 5, 6, 4, 3, 6, 3, 6];
 
@@ -33,10 +39,38 @@ class DataController implements Controller {
     const { elem } = request.body;
     const id = Number(request.params.id);
 
+<<<<<<< Updated upstream
     let data = testArr;
     data[id] = elem;
 
     response.status(200).json(data);
+=======
+        const schema = Joi.object({
+            air: Joi.array()
+                .items(
+                    Joi.object({
+                        id: Joi.number().integer().positive().required(),
+                        value: Joi.number().positive().required()
+                    })
+                )
+                .unique((a, b) => a.id === b.id),
+            deviceId: Joi.number().integer().positive().valid(parseInt(id, 10)).required()
+        });
+
+        try {
+            await this.dataService.createData(data);
+            response.status(200).json(data);
+        } catch (error: any) {
+            console.error(`Validation Error: ${error.message}`);
+            response.status(400).json({ error: 'Invalid input data.' });
+        }
+    }
+
+    private getAllDeviceData = async (request: Request, response: Response, next: NextFunction) => {
+        const { id } = request.params;
+        const data = await this.dataService.query(id);
+        response.status(200).json(data);
+>>>>>>> Stashed changes
     };
 
 
