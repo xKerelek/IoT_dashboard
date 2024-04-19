@@ -4,10 +4,10 @@
 ## Aplikacja IoT - dashboard :bar_chart:
 
 ### Aby uruchomić aplikację należy wpisać w konsoli
-> npm run dev :rocket:
+> npm run watch :rocket:
 
 ### Laboratoria 5 :microscope:
 
 # Karol Nowak :man_technologist:
 
-> Laboratoria 5
+> Laboratoria 7
