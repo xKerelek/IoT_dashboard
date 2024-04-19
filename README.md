@@ -9,5 +9,3 @@
 ### Laboratoria 5 :microscope:
 
 # Karol Nowak :man_technologist:
-
-> Laboratoria 5
