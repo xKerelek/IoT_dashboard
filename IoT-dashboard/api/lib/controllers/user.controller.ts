@@ -21,6 +21,10 @@ class UserController implements Controller {
         this.router.post(`${this.path}/create`, this.createNewOrUpdate);
         this.router.post(`${this.path}/auth`, this.authenticate);
         this.router.delete(`${this.path}/logout/:userId`, auth,  this.removeHashSession);
+
+        this.router.post(`${this.path}/reset`, this.resetUserPassword);
+
+
     }
 
     private authenticate = async (request: Request, response: Response, next: NextFunction) => {
@@ -39,6 +43,7 @@ class UserController implements Controller {
             response.status(401).json({error: 'Unauthorized'});
         }
     };
+
 
     private createNewOrUpdate = async (request: Request, response: Response, next: NextFunction) => {
         const userData = request.body;
@@ -73,15 +78,32 @@ class UserController implements Controller {
     };
 
     private resetUserPassword = async (request: Request, response: Response, next: NextFunction) => {
-        const {userId} = request.params;
-
         try {
-            const result = await this.tokenService.remove(userId);
-            response.status(200).send(result);
+            const { email } = request.body;
+            const user = await this.userService.getByEmailOrName(email);
+
+            if(!user) {
+                response.status(404).json({error: 'User not found'});
+            }
+
+            const newUserPassword = this.getRandomPassword();
+            const hashPassword = await this.passwordService.hashPassword(newUserPassword);
+            await this.passwordService.createOrUpdate({userId: user._id, password: hashPassword});
+
+
+            response.status(200).json(newUserPassword);
         } catch (error) {
             console.error(`Validation Error: ${error.message}`);
-            response.status(401).json({error: 'Unauthorized'});
+            response.status(500).json({error: 'Server Error!', value: error.message});
         }
+    };
+
+    private getRandomPassword(): string {
+        return Math.random().toString(36).slice(-8);
+    }
+
+    private getAllUsers = async (request: Request, response: Response, next: NextFunction) => {
+
     };
 
 }
