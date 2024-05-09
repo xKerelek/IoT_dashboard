@@ -25,7 +25,7 @@ class TokenService {
                 userId: user.id,
                 type: 'authorization',
                 value,
-                createDate: new Date().getTime()
+                createDate: new Date().getTime(),
             }).save();
             if (result) {
                 return result;
@@ -52,6 +52,23 @@ class TokenService {
             throw new Error('Error while removing token');
         }
     }
+
+    public async removeExpiredToken() {
+        try {
+            const currentTimestamp = new Date().getTime();
+            const expiredTokens = await TokenModel.find({ createDate: { $lt: currentTimestamp } });
+
+            if (expiredTokens.length > 0) {
+                await TokenModel.deleteMany({ _id: { $in: expiredTokens.map(token => token._id) } });
+                console.log(`${expiredTokens.length} wygasłych tokenów usunięto z bazy danych.`);
+            } else {
+                console.log('Nie znaleziono wygasłych tokenów.');
+            }
+        } catch (error) {
+            console.error('Błąd podczas sprawdzania i usuwania wygasłych tokenów:', error);
+        }
+    }
+
 }
 
 export default TokenService;

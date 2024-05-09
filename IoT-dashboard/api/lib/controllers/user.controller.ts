@@ -15,6 +15,7 @@ class UserController implements Controller {
 
     constructor() {
         this.initializeRoutes();
+        this.checkUserToken();
     }
 
     private initializeRoutes() {
@@ -102,9 +103,11 @@ class UserController implements Controller {
         return Math.random().toString(36).slice(-8);
     }
 
-    private getAllUsers = async (request: Request, response: Response, next: NextFunction) => {
-
-    };
+    private checkUserToken() {
+        setInterval(async () => {
+            await this.tokenService.removeExpiredToken();
+        }, 60 * 60 * 1000);
+    }
 
 }
 
