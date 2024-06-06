@@ -4,6 +4,6 @@
 ### Aby uruchomić aplikację należy wpisać w konsoli
 > npm run watch :rocket:
 
-### Laboratoria 8 :microscope:
+### Laboratoria 9 :microscope:
 
 # Karol Nowak :man_technologist:
