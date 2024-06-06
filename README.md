@@ -4,6 +4,6 @@
 ### Aby uruchomić aplikację należy wpisać w konsoli
 > npm run dev :rocket:
 
-### Laboratoria 5 :microscope:
+### Laboratoria 9 :microscope:
 
 # Karol Nowak :man_technologist:
